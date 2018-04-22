@@ -1,0 +1,25 @@
+We have to implement synchronization of files among many devices.
+I have used the Dropbox API and watchdog to implement this.
+I have created three .py files:
+config.py, fileDownload.py, fileUpload.py . 
+Steps:
+•	First create an API on the Dropbox and set the authorization token, app key and app secret in config.py file.
+•	Create an instance of the Dropbox object in both fileUpload.py and fileDownload.py.
+•	In the fileUpload.py, I have used ‘watchdog’ so whenever a file/directory undergoes modification, I pushed the changes on the DropBox. The directory which is to be watched is specified in the config.py.
+I created a function named ‘on_modified’ , which watches the folder I specified in the config.py file as LOCAL_DIRECTORY_WATCH and fires an event whenever the specified folder undergoes any modification and that modified file is then pushed to Dropbox.
+This script keeps running in the background and the changes made in file gets saved, the fileUpload.py updates the file on the Dropbox.
+•	The script fileDownload.py will run as a cron job (frequency on running depends on us).
+In the fileDownload.py, I recursively checked the Dropbox folder to list all the files.
+Then, iterate through the files on the Dropbox and obtain the respective file path.
+The path I get is in Unicode string. So first, Convert the Unicode string into ASCII format and download the file from the Dropbox for file updation.
+I then set the local path where I want the files to be synced and stored. If the file doesn’t exist then create the respective directories before writing it to disk. 
+
+
+Steps to Run:
+Run the fileUpload.py. Now you have a file story.txt in the sample folder which you want to sync over multiple devices, then edit the story.txt and save the changes. Then when you’ll see the file on Dropbox account, it is updated according to the changes made.
+Now, if you made the changes in file on the Dropbox account, then as the fileDownload.py is running as a cron job every minute (I had set the frequency of 1 minute), your local file on the computer gets updated within one minute.
+This implementation of file synchronization can be extended to more than one devices in similar manner.
+
+
+Regards,
+Adarsh Trivedi
