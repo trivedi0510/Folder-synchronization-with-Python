@@ -1,0 +1,5 @@
+ACCESS_TOKEN = "JILnWZzEe9AAAAAAAAAATqZ_LpoP2ddjYf1T243jTD2CjW1zeKCUBHvv8rBo4rQq"
+LOCAL_DIRECTORY_WATCH = "C:\Users\dell laptop\Desktop\FolderSync\FolderSync\Sample"
+DROPBOX_SYNC_LOCATION = "/sync"
+APP_KEY = "xk3wjw37zdwv04t"
+APP_SECRET = "v1k6w5ws2docg4n"
